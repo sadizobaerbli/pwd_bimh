@@ -1,49 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_bimh/config/colors.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
-import 'form.dart';
+import 'address.dart';
+import 'civil.dart';
+import 'em.dart';
+import 'general_information.dart';
 
-class AddEstablishment extends StatefulWidget {
-  const AddEstablishment({Key? key}) : super(key: key);
+class AddEstablishment extends StatelessWidget {
+  AddEstablishment({Key? key}) : super(key: key);
 
-  @override
-  State<AddEstablishment> createState() => _AddEstablishmentState();
-}
 
-class _AddEstablishmentState extends State<AddEstablishment> {
-  //====================variables=================
+  //--------------------variables-------------------
+  //------------------------------------------------
   int _currentStep = 0;
 
+  //--------------------functions-------------------
+  //------------------------------------------------
   _steps() => [
     Step(
       title: const SizedBox(height: 0, width: 0,),
       subtitle: const Text('G/I'),
-      content: const AddressForm(),
+      content: GeneralInformation(),
       isActive: _currentStep == 0,
-
+      state: _stepState(0),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
       subtitle: const Text('Address'),
-      content: const AddressForm(),
+      content: Address(),
       isActive: _currentStep == 1,
-
+      state: _stepState(1),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
       subtitle: const Text('Civil'),
-      content: const AddressForm(),
+      content: Civil(),
       isActive: _currentStep == 2,
-
+      state: _stepState(2),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
       subtitle: const Text('E/M'),
-      content: const AddressForm(),
+      content: EM(),
       isActive: _currentStep == 3,
-
+      state: _stepState(3),
     ),
   ];
+
+  _stepState(int step) {
+    if (_currentStep > step) {
+      return StepState.complete;
+    } else {
+      return StepState.indexed;
+    }
+  }
+
+
 
 
   @override
@@ -58,60 +70,71 @@ class _AddEstablishmentState extends State<AddEstablishment> {
           style: extraBoldText(18, color: white),
         ),
       ),
-      body: SizedBox(
-        height: double.infinity,
-        child: Stepper(
-          elevation: 0,
-          type: StepperType.horizontal,
-          controlsBuilder: (BuildContext context, ControlsDetails controls) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Row(
-                children: <Widget>[
-                  SizedBox(
-                    height: 30,
-                    child: ElevatedButton(
-                      onPressed: controls.onStepContinue,
-                      child: const Text('NEXT'),
-                    ),
-                  ),
-                  const SizedBox(width: 20,),
-                  if (_currentStep != 0)
-                    SizedBox(
-                      height: 30,
-                      child: ElevatedButton(
-                        onPressed: controls.onStepCancel,
-                        child: const Text('BACK'),
-                      ),
-                    ),
+      body: StatefulBuilder(
+        builder: (context, setState) {
+          return SingleChildScrollView(
+            child: SizedBox(
+              height: 650,
+              child: Stepper(
+                elevation: 0,
+                type: StepperType.horizontal,
+                controlsBuilder: (BuildContext context,
+                    ControlsDetails controls) {
 
-                ],
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 32.0),
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 28,
+                          child: ElevatedButton(
+                            onPressed: controls.onStepContinue,
+                            child: Text('NEXT',
+                              style: semiBoldText(12, color: white),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 20,),
+                        if (_currentStep != 0)
+                          SizedBox(
+                            height: 28,
+                            child: ElevatedButton(
+                              onPressed: controls.onStepCancel,
+                              child: Text('BACK',
+                                style: semiBoldText(12, color: white),
+                              ),
+                            ),
+                          ),
+
+                      ],
+                    ),
+                  );
+                },
+                onStepTapped: (step) => setState(() => _currentStep = step),
+                onStepContinue: () {
+                  setState(() {
+                    if (_currentStep < _steps().length - 1) {
+                      _currentStep += 1;
+                    } else {
+                      _currentStep = 0;
+                    }
+                  });
+                },
+                onStepCancel: () {
+                  setState(() {
+                    if (_currentStep > 0) {
+                      _currentStep -= 1;
+                    } else {
+                      _currentStep = 0;
+                    }
+                  });
+                },
+                currentStep: _currentStep,
+                steps: _steps(),
               ),
-            );
-          },
-          onStepTapped: (step) => setState(() => _currentStep = step),
-          onStepContinue: () {
-            setState(() {
-              if (_currentStep < _steps().length - 1) {
-                _currentStep += 1;
-              } else {
-                _currentStep = 0;
-              }
-            });
-          },
-          onStepCancel: () {
-            setState(() {
-              if (_currentStep > 0) {
-                _currentStep -= 1;
-              } else {
-                _currentStep = 0;
-              }
-            });
-          },
-          currentStep: _currentStep,
-          steps: _steps(),
-        ),
-
+            ),
+          );
+        }
       ),
     );
   }

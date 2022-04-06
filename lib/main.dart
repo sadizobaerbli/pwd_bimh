@@ -55,7 +55,7 @@ class _PwdBimhState extends State<PwdBimh> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        initialRoute: '/addEstablishment',
+        initialRoute: '/',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: const MaterialColor(
@@ -77,9 +77,9 @@ class _PwdBimhState extends State<PwdBimh> {
         //==========initiating the core routes here=======
         //------------------------------------------------
         routes: {
-          '/': (_) => const HomePage(),
+          '/': (_) => HomePage(),
           '/establishment': (_) => EstablishmentPage(),
-          '/addEstablishment': (_) => const AddEstablishment(),
+          '/addEstablishment': (_) => AddEstablishment(),
         }
     );
   }
