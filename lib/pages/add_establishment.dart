@@ -5,17 +5,19 @@ import 'address.dart';
 import 'civil.dart';
 import 'em.dart';
 import 'general_information.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddEstablishment extends StatelessWidget {
   AddEstablishment({Key? key}) : super(key: key);
 
-
   //--------------------variables-------------------
   //------------------------------------------------
+
   int _currentStep = 0;
 
   //--------------------functions-------------------
   //------------------------------------------------
+
   _steps() => [
     Step(
       title: const SizedBox(height: 0, width: 0,),
@@ -55,9 +57,6 @@ class AddEstablishment extends StatelessWidget {
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,20 +66,19 @@ class AddEstablishment extends StatelessWidget {
         elevation: 0,
         backgroundColor: primaryBlue,
         title: Text("Create Establishment",
-          style: extraBoldText(18, color: white),
+          style: extraBoldText(18.sp, color: white),
         ),
       ),
       body: StatefulBuilder(
         builder: (context, setState) {
           return SingleChildScrollView(
             child: SizedBox(
-              height: 650,
+              height: 650.h,
               child: Stepper(
                 elevation: 0,
                 type: StepperType.horizontal,
                 controlsBuilder: (BuildContext context,
                     ControlsDetails controls) {
-
                   return Padding(
                     padding: const EdgeInsets.symmetric(vertical: 32.0),
                     child: Row(

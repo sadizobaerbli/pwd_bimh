@@ -6,6 +6,7 @@ import 'package:pwd_bimh/pages/add_establishment_provider.dart';
 import 'package:pwd_bimh/pages/home.dart';
 import 'pages/establishment_page.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 //==============welcome to pwd bimh project==================
 //==============here we initiates some settings==============
@@ -29,7 +30,7 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.light,
     ),
   );
-  runApp(const MyApp(),);
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -38,9 +39,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => AddEstablishmentProvider(),),
+        ChangeNotifierProvider(create: (_) => AddEstablishmentProvider()),
       ],
-      child: const PwdBimh(),
+      child: ScreenUtilInit(
+        designSize: const Size(360, 690),
+        minTextAdapt: true,
+        splitScreenMode: true,
+        builder: (){
+          return const PwdBimh();
+        },
+      ),
     );
   }
 }
@@ -57,6 +65,18 @@ class _PwdBimhState extends State<PwdBimh> {
     return MaterialApp(
         initialRoute: '/',
         debugShowCheckedModeBanner: false,
+        builder: (context, widget) {
+          ScreenUtil.setContext(context);
+          ScreenUtil.init(
+            const BoxConstraints(maxHeight: 690, maxWidth: 360,),
+            context: context,
+            designSize: const Size(360, 690),
+          );
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget!,
+          );
+        },
         theme: ThemeData(
           primarySwatch: const MaterialColor(
             0xFF5B4FFF,
