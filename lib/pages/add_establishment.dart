@@ -21,28 +21,28 @@ class AddEstablishment extends StatelessWidget {
   _steps() => [
     Step(
       title: const SizedBox(height: 0, width: 0,),
-      subtitle: const Text('G/I'),
+      subtitle: Text('G/I', style: semiBoldText(13.sp),),
       content: GeneralInformation(),
       isActive: _currentStep == 0,
       state: _stepState(0),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
-      subtitle: const Text('Address'),
+      subtitle: Text('Address', style: semiBoldText(13.sp),),
       content: Address(),
       isActive: _currentStep == 1,
       state: _stepState(1),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
-      subtitle: const Text('Civil'),
+      subtitle: Text('Civil', style: semiBoldText(13.sp),),
       content: Civil(),
       isActive: _currentStep == 2,
       state: _stepState(2),
     ),
     Step(
       title: const SizedBox(height: 0, width: 0,),
-      subtitle: const Text('E/M'),
+      subtitle: Text('E/M', style: semiBoldText(13.sp),),
       content: EM(),
       isActive: _currentStep == 3,
       state: _stepState(3),
@@ -73,37 +73,36 @@ class AddEstablishment extends StatelessWidget {
         builder: (context, setState) {
           return SingleChildScrollView(
             child: SizedBox(
-              height: 650.h,
+              height: 610.h,
               child: Stepper(
                 elevation: 0,
                 type: StepperType.horizontal,
                 controlsBuilder: (BuildContext context,
                     ControlsDetails controls) {
                   return Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 32.0),
+                    padding: EdgeInsets.only(bottom: 20.h),
                     child: Row(
                       children: <Widget>[
                         SizedBox(
-                          height: 28,
+                          height: 28.h,
                           child: ElevatedButton(
                             onPressed: controls.onStepContinue,
                             child: Text('NEXT',
-                              style: semiBoldText(12, color: white),
+                              style: semiBoldText(12.sp, color: white),
                             ),
                           ),
                         ),
-                        const SizedBox(width: 20,),
+                        SizedBox(width: 20.w,),
                         if (_currentStep != 0)
                           SizedBox(
-                            height: 28,
+                            height: 28.h,
                             child: ElevatedButton(
                               onPressed: controls.onStepCancel,
                               child: Text('BACK',
-                                style: semiBoldText(12, color: white),
+                                style: semiBoldText(12.sp, color: white),
                               ),
                             ),
                           ),
-
                       ],
                     ),
                   );

@@ -4,6 +4,7 @@ import 'package:pwd_bimh/config/colors.dart';
 import 'package:pwd_bimh/pages/add_establishment.dart';
 import 'package:pwd_bimh/pages/add_establishment_provider.dart';
 import 'package:pwd_bimh/pages/home.dart';
+import 'package:pwd_bimh/pages/pending_establishment.dart';
 import 'pages/establishment_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -100,6 +101,7 @@ class _PwdBimhState extends State<PwdBimh> {
           '/': (_) => HomePage(),
           '/establishment': (_) => EstablishmentPage(),
           '/addEstablishment': (_) => AddEstablishment(),
+          '/pendingEstablishment': (_) => PendingEstablishmentPage(),
         }
     );
   }
