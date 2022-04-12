@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pwd_bimh/config/colors.dart';
 import 'package:pwd_bimh/pages/add_establishment.dart';
 import 'package:pwd_bimh/pages/add_establishment_provider.dart';
+import 'package:pwd_bimh/pages/establishment_report.dart';
 import 'package:pwd_bimh/pages/home.dart';
 import 'package:pwd_bimh/pages/pending_establishment.dart';
+import 'package:pwd_bimh/pages/view_establishment.dart';
+import 'config/route_names.dart';
 import 'pages/establishment_page.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -63,8 +67,9 @@ class PwdBimh extends StatefulWidget {
 class _PwdBimhState extends State<PwdBimh> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        initialRoute: '/',
+    return MaterialApp.router(
+        routeInformationParser: _router.routeInformationParser,
+        routerDelegate: _router.routerDelegate,
         debugShowCheckedModeBanner: false,
         builder: (context, widget) {
           ScreenUtil.setContext(context);
@@ -82,10 +87,10 @@ class _PwdBimhState extends State<PwdBimh> {
           primarySwatch: const MaterialColor(
             0xFF5B4FFF,
             <int, Color>{
-              50:  Color(0xFFe0e0e0),
-              100: Color(0xFFb3b3b3),
+              50:  Color(0xFFE0E0E0),
+              100: Color(0xFFB3B3bB),
               200: Color(0xFF808080),
-              300: Color(0xFF4d4d4d),
+              300: Color(0xFF4D4D4D),
               400: Color(0xFF262626),
               500: Color(0xFF5B4FFF),
               600: Color(0xFF000000),
@@ -95,16 +100,91 @@ class _PwdBimhState extends State<PwdBimh> {
             },
           ),
         ),
-        //==========initiating the core routes here=======
-        //------------------------------------------------
-        routes: {
-          '/': (_) => HomePage(),
-          '/establishment': (_) => EstablishmentPage(),
-          '/addEstablishment': (_) => AddEstablishment(),
-          '/pendingEstablishment': (_) => PendingEstablishmentPage(),
-        }
     );
   }
+
+  //==========initiating the core routes here=======
+  //------------------------------------------------
+
+  final _router = GoRouter(
+    initialLocation: '/establishmentReportPage',
+      routes: [
+        GoRoute(
+          name: homePage,
+          path: '/',
+          pageBuilder: (context, state){
+            return MaterialPage(
+              key: state.pageKey,
+              child: HomePage(),
+            );
+          }
+        ),
+        GoRoute(
+          name: establishmentPage,
+          path: '/establishmentPage/:title',
+          pageBuilder: (context, state){
+            return MaterialPage(
+              key: state.pageKey,
+              child: EstablishmentPage(title: state.params['title'],),
+            );
+          },
+          routes: [
+            GoRoute(
+                name: viewEstablishmentPage,
+                path: ':pwdId',
+                pageBuilder: (context, state){
+                  return MaterialPage(
+                    key: state.pageKey,
+                    child: ViewEstablishmentPage(
+                      pwdId: state.params['pwdId']!,
+                    ),
+                  );
+                }
+            ),
+          ]
+        ),
+        GoRoute(
+          name: addEstablishmentPage,
+          path: '/addEstablishment',
+          pageBuilder: (context, state){
+            return MaterialPage(
+              key: state.pageKey,
+              child: AddEstablishment(),
+            );
+          }
+        ),
+        GoRoute(
+          name: pendingEstablishmentPage,
+          path: '/pendingEstablishmentPage',
+          pageBuilder: (context, state){
+            return MaterialPage(
+              key: state.pageKey,
+              child: PendingEstablishmentPage(),
+            );
+          }
+        ),
+        GoRoute(
+            name: establishmentReportPage,
+            path: '/establishmentReportPage',
+            pageBuilder: (context, state){
+              return MaterialPage(
+                key: state.pageKey,
+                child: EstablishmentReportPage(),
+              );
+            }
+        ),
+      ],
+      errorPageBuilder: (context, state){
+        return MaterialPage(
+          key: state.pageKey,
+          child: Scaffold(
+            body: Center(
+              child: Text(state.error.toString(),),
+            ),
+          ),
+        );
+      }
+  );
 }
 
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_bimh/config/custom_radio.dart';
 import 'package:pwd_bimh/config/custom_textfield.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class EM extends StatelessWidget {
   EM({Key? key}) : super(key: key);
@@ -23,13 +24,15 @@ class EM extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Total Substation Capacity'),
         CustomRadioSelection(
             radioTitle: 'File Detection System',
-            radioButtons: const ['Complete', 'Partial', 'No'],),
+            radioButtons: const ['Complete', 'Partial', 'No'],
+        ),
         CustomRadioSelection(
           radioTitle: 'File Protection System',
-          radioButtons: const ['Complete', 'Partial', 'No'],),
+          radioButtons: const ['Complete', 'Partial', 'No'],
+        ),
         CustomTextField(textFieldTitle: 'Lift No.'),
         CustomTextField(textFieldTitle: 'EM Other Information'),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     );
   }

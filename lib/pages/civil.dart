@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pwd_bimh/config/custom_dropdown.dart';
 import 'package:pwd_bimh/config/custom_radio.dart';
 import 'package:pwd_bimh/config/custom_textfield.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Civil extends StatelessWidget {
   Civil({Key? key}) : super(key: key);
@@ -16,10 +17,12 @@ class Civil extends StatelessWidget {
       children: [
         CustomRadioSelection(
           radioTitle: 'Structural Drawing ID',
-          radioButtons: const ['Yes', 'No'],),
+          radioButtons: const ['Yes', 'No'],
+        ),
         CustomRadioSelection(
           radioTitle: 'Architectural Drawing ID',
-          radioButtons: const ['Yes', 'No'],),
+          radioButtons: const ['Yes', 'No'],
+        ),
         CustomDropDown(
           dropdownTitle: 'Year of Construction', titleSize: 16,
           dropdownButtons: const ['1', '2', '3', '4', '5', '6'],
@@ -33,7 +36,8 @@ class Civil extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Under Ground'),
         CustomRadioSelection(
           radioTitle: 'Ground Floor Parking',
-          radioButtons: const ['Yes', 'No', 'Partial'],),
+          radioButtons: const ['Yes', 'No', 'Partial'],
+        ),
         CustomTextField(textFieldTitle: 'Establishment Height'),
         CustomTextField(textFieldTitle: 'Plinth Area'),
         CustomTextField(textFieldTitle: 'Total Floor Area'),
@@ -46,7 +50,7 @@ class Civil extends StatelessWidget {
           dropdownButtons: const ['No Data Available'],
         ),
         CustomTextField(textFieldTitle: 'Foundation Designed For'),
-        const SizedBox(height: 20),
+        SizedBox(height: 20.h),
       ],
     );
   }

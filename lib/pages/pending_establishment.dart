@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pwd_bimh/config/colors.dart';
+import 'package:pwd_bimh/config/route_names.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PendingEstablishmentPage extends StatelessWidget {
-  PendingEstablishmentPage({Key? key}) : super(key: key);
+  final String? title;
+  PendingEstablishmentPage({Key? key, this.title}) : super(key: key);
 
   //====================variables=================
   //----------------------------------------------
@@ -60,7 +63,10 @@ class PendingEstablishmentPage extends StatelessWidget {
         children: [
           Expanded(
             flex: 2,
-            child: Text(pKey ?? '', style: semiBoldText(13.sp, color: white),),
+            child: Text(
+              pKey ?? '',
+              style: semiBoldText(13.sp, color: white),
+            ),
           ),
           SizedBox(width: 12.w,),
           Expanded(
@@ -171,13 +177,15 @@ class PendingEstablishmentPage extends StatelessWidget {
         children: [
           ListView(
             padding: EdgeInsets.fromLTRB(12.sp,12.sp,12.sp,46.sp),
-            children: List.generate(5, (index) => _card(),),
+            children: List.generate(
+              5, (index) => _card(),
+            ),
           ),
           Positioned(
             bottom: 0, left: 0, right: 0,
             child: GestureDetector(
               onTap: (){
-                Navigator.pushNamed(context, '/addEstablishment');
+                context.goNamed(addEstablishmentPage);
               },
               child: Container(
                 height: 46.h, width: double.infinity,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:pwd_bimh/config/colors.dart';
-import 'package:pwd_bimh/pages/establishment_page.dart';
+import 'package:pwd_bimh/config/route_names.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -10,7 +11,7 @@ class HomeDrawer extends StatelessWidget {
   //====================Variables=================
   //----------------------------------------------
 
-  final List<String> _categories = ['Establishment', 'Roles', 'Administrations',
+  final List<String> _categories = ['Establishment','Roles','Administrations',
     'Others'];
 
   final List<List<String>> _subcategories = [['Establishment',
@@ -43,11 +44,13 @@ class HomeDrawer extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('গণপূর্ত অধিদপ্তর', style: extraBoldText(15.sp,
-                    color: white,),
+                Text(
+                  'গণপূর্ত অধিদপ্তর',
+                  style: extraBoldText(15.sp, color: white,),
                 ),
-                Text('Public Works Department', style: extraBoldText(15.sp,
-                    color: white,),
+                Text(
+                  'Public Works Department',
+                  style: extraBoldText(15.sp, color: white,),
                 ),
               ],
             ),
@@ -82,8 +85,7 @@ class HomeDrawer extends StatelessWidget {
   _subCategory(BuildContext context, {String? subCategory,}){
     return GestureDetector(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder:
-            (context)=> EstablishmentPage(title: subCategory!),),);
+        context.goNamed(establishmentPage, params:{'title' : "$subCategory"});
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 8.sp),

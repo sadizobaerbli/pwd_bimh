@@ -8,7 +8,8 @@ import 'general_information.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AddEstablishment extends StatelessWidget {
-  AddEstablishment({Key? key}) : super(key: key);
+  final String? pwdId;
+  AddEstablishment({Key? key, this.pwdId}) : super(key: key);
 
   //--------------------variables-------------------
   //------------------------------------------------

@@ -26,7 +26,8 @@ class GeneralInformation extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Project Name',),
         CustomRadioSelection(
           radioTitle: 'Establishment Category',
-          radioButtons: const ['Civil', 'Electrical/Mechanical', 'Both'],),
+          radioButtons: const ['Civil', 'Electrical/Mechanical', 'Both'],
+        ),
         CustomRadioSelection(
           radioTitle: 'Constructed By',
           radioButtons: const ['PWD', 'Others'],),
