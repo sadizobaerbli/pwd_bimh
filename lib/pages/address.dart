@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pwd_bimh/config/custom_dropdown.dart';
+import 'package:pwd_bimh/config/custom_textfield.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../config/custom_textfield.dart';
 
 class Address extends StatelessWidget {
   Address({Key? key}) : super(key: key);

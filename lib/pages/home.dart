@@ -19,6 +19,43 @@ class HomePage extends StatelessWidget {
   //===============function section===============
   //----------------------------------------------
 
+  gridItem(int index){
+    return Container(
+      margin: EdgeInsets.only(bottom: 6.h),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      decoration: BoxDecoration(
+        color: primaryBlue,
+        borderRadius: BorderRadius.circular(16.r),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          ImageIcon(
+            const AssetImage('assets/icons/team.png'),
+            size: 32.sp, color: white,
+          ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('0',
+                textAlign: TextAlign.center,
+                style: boldText(24.sp, color: white),
+              ),
+              SizedBox(
+                width: 97.w,
+                child: Text(items[index].toUpperCase(),
+                  textAlign: TextAlign.center,
+                  maxLines: 2,
+                  style: mediumText(10.sp, color: white),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Container _appBar(BuildContext context){
     return Container(
       padding: EdgeInsets.only(top: 28.h,bottom: 4.h),
@@ -49,7 +86,7 @@ class HomePage extends StatelessWidget {
             padding: EdgeInsets.only(right: 8.w),
             child: CircleAvatar(
               radius: 14.r,
-              backgroundImage: const AssetImage('assets/images/user_image.png'),
+              backgroundImage:const AssetImage('assets/images/user_image.png'),
             ),
           ),
         ],
@@ -67,49 +104,18 @@ class HomePage extends StatelessWidget {
             children: [
               _appBar(context),
               GridView.builder(
-                padding: EdgeInsets.fromLTRB(16.w,16.h,16.w,0),
+                padding: EdgeInsets.fromLTRB(10.w,16.h,10.w,0),
                 shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
+                  mainAxisExtent: 74.h,
                   mainAxisSpacing: 16.h,
                   crossAxisSpacing: 12.w,
                 ),
                 itemCount: 6,
                 itemBuilder: (context, index){
-                return Container(
-                  margin: EdgeInsets.only(bottom: 6.h),
-                  decoration: BoxDecoration(
-                     color: white,
-                     borderRadius: BorderRadius.circular(16.r),
-                     boxShadow: [
-                        BoxShadow(
-                           color: black.withOpacity(.1),
-                           spreadRadius: 2,
-                           blurRadius: 1
-                        ),
-                     ],
-                  ),
-                  child: Column(
-                     mainAxisAlignment: MainAxisAlignment.center,
-                     children: [
-                       ImageIcon(
-                         const AssetImage('assets/icons/team.png'),
-                         size: 32.sp, color: primaryBlue,
-                       ),
-                       SizedBox(height: 6.h,),
-                       Text('0',
-                         textAlign: TextAlign.center,
-                         style: boldText(24.sp, color: primaryBlue),
-                       ),
-                       SizedBox(height: 6.h,),
-                       Text(items[index].toUpperCase(),
-                         textAlign: TextAlign.center,
-                         maxLines: 2,
-                         style: boldText(12.sp, color: primaryBlue),
-                       ),
-                     ],
-                  ),
-                );}
+                  return gridItem(index);
+                }
               ),
             ],
           );

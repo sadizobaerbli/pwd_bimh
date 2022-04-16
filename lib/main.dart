@@ -107,7 +107,6 @@ class _PwdBimhState extends State<PwdBimh> {
   //------------------------------------------------
 
   final _router = GoRouter(
-    initialLocation: '/establishmentReportPage',
       routes: [
         GoRoute(
           name: homePage,

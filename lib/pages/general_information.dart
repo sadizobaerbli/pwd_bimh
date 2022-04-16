@@ -20,7 +20,7 @@ class GeneralInformation extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Establishment Name',),
         CustomDropDown(
           dropdownTitle: 'Concerned Ministry', titleSize: 16,
-          dropdownButtons: const ["President's Office", "Ministry of Education",
+          dropdownButtons: const["President's Office", "Ministry of Education",
             "Ministry of Home Affairs",  "Prime Minister's Office"],
         ),
         CustomTextField(textFieldTitle: 'Project Name',),

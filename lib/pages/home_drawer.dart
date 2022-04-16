@@ -11,14 +11,14 @@ class HomeDrawer extends StatelessWidget {
   //====================Variables=================
   //----------------------------------------------
 
-  final List<String> _categories = ['Establishment','Roles','Administrations',
-    'Others'];
+  final List<String> _categories = ['Establishment', 'Reports', 'Roles',
+    'Administrations', 'Others'];
 
   final List<List<String>> _subcategories = [['Establishment',
     'Pending Establishment', 'Archived Establishment', 'Add Establishment',
-    'Trashed Establishment'],
-    ['Roles', 'Role Wise Permissions'] , ['Activity  Log', 'File Manager'],
-    ['User Manual', 'Video Tutorial']];
+    'Trashed Establishment'],['Establishment Report', 'Report By Geolocation',
+    'Common Reports'], ['Roles', 'Role Wise Permissions'] ,
+    ['Activity  Log', 'File Manager'], ['User Manual', 'Video Tutorial']];
 
   //====================Functions=================
   //----------------------------------------------
@@ -85,7 +85,20 @@ class HomeDrawer extends StatelessWidget {
   _subCategory(BuildContext context, {String? subCategory,}){
     return GestureDetector(
       onTap: (){
-        context.goNamed(establishmentPage, params:{'title' : "$subCategory"});
+        if(subCategory == 'Establishment' ||
+            subCategory == 'Archived Establishment' ||
+            subCategory == 'Trashed Establishment'){
+          context.goNamed(establishmentPage, params:{'title' : "$subCategory"});
+        }
+        else if(subCategory == 'Pending Establishment'){
+          context.goNamed(pendingEstablishmentPage);
+        }
+        else if(subCategory == 'Add Establishment'){
+          context.goNamed(addEstablishmentPage);
+        }
+        else if(subCategory == 'Establishment Report'){
+          context.goNamed(establishmentReportPage);
+        }
       },
       child: Padding(
         padding: EdgeInsets.only(bottom: 8.sp),
