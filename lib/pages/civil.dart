@@ -7,8 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Civil extends StatelessWidget {
   Civil({Key? key}) : super(key: key);
 
-  //=======CustomTextField, CustomRadioSelection, CustomDropDown used=====
-  //----------------------------------------------------------------------
+  /*=====================CustomDropDown, CustomRadioSelection, CustomTextField
+  these are customized dropdown selection , customized radio selection and
+  customized textfield widgets=========================*/
 
   @override
   Widget build(BuildContext context) {
@@ -24,11 +25,13 @@ class Civil extends StatelessWidget {
           radioButtons: const ['Yes', 'No'],
         ),
         CustomDropDown(
-          dropdownTitle: 'Year of Construction', titleSize: 16,
+          dropdownTitle: 'Year of Construction',
+          titleSize: 16,
           dropdownButtons: const ['1', '2', '3', '4', '5', '6'],
         ),
         CustomDropDown(
-          dropdownTitle: 'Uses of Establishment', titleSize: 16,
+          dropdownTitle: 'Uses of Establishment',
+          titleSize: 16,
           dropdownButtons: const ['No Data Available'],
         ),
         CustomTextField(textFieldTitle: 'Civil Other Information'),
@@ -42,11 +45,13 @@ class Civil extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Plinth Area'),
         CustomTextField(textFieldTitle: 'Total Floor Area'),
         CustomDropDown(
-          dropdownTitle: 'Type of Structure', titleSize: 16,
+          dropdownTitle: 'Type of Structure',
+          titleSize: 16,
           dropdownButtons: const ['No Data Available'],
         ),
         CustomDropDown(
-          dropdownTitle: 'Foundation Type', titleSize: 16,
+          dropdownTitle: 'Foundation Type',
+          titleSize: 16,
           dropdownButtons: const ['No Data Available'],
         ),
         CustomTextField(textFieldTitle: 'Foundation Designed For'),

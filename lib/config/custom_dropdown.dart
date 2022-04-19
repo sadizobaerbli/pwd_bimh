@@ -7,9 +7,15 @@ class CustomDropDown extends StatelessWidget {
   final String dropdownTitle;
   final List<String> dropdownButtons;
   final double titleSize;
-  CustomDropDown({Key? key,
-    required this.dropdownTitle,
-    required this.dropdownButtons, this.titleSize = 14}) : super(key: key);
+  CustomDropDown(
+      {Key? key,
+      required this.dropdownTitle,
+      required this.dropdownButtons,
+      this.titleSize = 14})
+      : super(key: key);
+
+  //============variables===========
+  //--------------------------------
 
   String _currentItemSelected = '';
 
@@ -22,22 +28,28 @@ class CustomDropDown extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.only(left: titleSize == 14 ? 14.h : 0),
-            child: Text(dropdownTitle, style: semiBoldText(titleSize.sp),),
+            child: Text(
+              dropdownTitle,
+              style: semiBoldText(titleSize.sp),
+            ),
           ),
-          SizedBox(height: 12.h,),
+          SizedBox(
+            height: 12.h,
+          ),
           Container(
-            width: double.infinity, height: titleSize == 14 ? 38.h : 42.h,
-            margin: EdgeInsets.symmetric(
-                horizontal: titleSize == 14 ? 14.h : 0),
+            width: double.infinity,
+            height: titleSize == 14 ? 32.h : 36.h,
+            margin:
+                EdgeInsets.symmetric(horizontal: titleSize == 14 ? 14.h : 0),
             padding: EdgeInsets.only(left: 12.w, bottom: 2.h, right: 12.w),
             decoration: BoxDecoration(
               color: white,
-              borderRadius: BorderRadius.circular(24.r),
+              borderRadius: BorderRadius.circular(10.r),
               boxShadow: [
                 BoxShadow(
-                    color: black.withOpacity(.1),
-                    spreadRadius: 2,
-                    blurRadius: 1,
+                  color: black.withOpacity(.1),
+                  spreadRadius: 2,
+                  blurRadius: 1,
                 ),
               ],
             ),
@@ -51,7 +63,10 @@ class CustomDropDown extends StatelessWidget {
                     value: str,
                     child: Text(
                       str,
-                      style: mediumText(12.sp, color: grey,),
+                      style: mediumText(
+                        12.sp,
+                        color: grey,
+                      ),
                     ),
                   );
                 }).toList();
@@ -59,8 +74,12 @@ class CustomDropDown extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(_currentItemSelected,
-                    style: mediumText(12.sp, color: grey,),
+                  Text(
+                    _currentItemSelected,
+                    style: mediumText(
+                      12.sp,
+                      color: grey,
+                    ),
                   ),
                   Icon(
                     Icons.arrow_drop_down,

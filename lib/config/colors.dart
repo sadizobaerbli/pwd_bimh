@@ -9,6 +9,7 @@ const indigo = Color(0xFF1560BD);
 const pink = Color(0xFFBD1578);
 const green = Color(0xFF17A96B);
 const red = Color(0xFFE70E00);
+const orange = Color(0xFFFF6A29);
 const deepGrey = Color(0xFF545454);
 const lightBlue = Color(0xFF1959FF);
 const blueGrey = Color(0xFF0288D1);

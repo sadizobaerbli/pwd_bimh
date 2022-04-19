@@ -6,8 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class EM extends StatelessWidget {
   EM({Key? key}) : super(key: key);
 
-  //===========CustomTextField and CustomRadioSelection used==========
-  //------------------------------------------------------------------
+  /*=====================CustomDropDown, CustomRadioSelection, CustomTextField
+  these are customized dropdown selcetion , customized radio selection and
+  customized textfield widgets=========================*/
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +24,8 @@ class EM extends StatelessWidget {
         CustomTextField(textFieldTitle: 'Substation'),
         CustomTextField(textFieldTitle: 'Total Substation Capacity'),
         CustomRadioSelection(
-            radioTitle: 'File Detection System',
-            radioButtons: const ['Complete', 'Partial', 'No'],
+          radioTitle: 'File Detection System',
+          radioButtons: const ['Complete', 'Partial', 'No'],
         ),
         CustomRadioSelection(
           radioTitle: 'File Protection System',

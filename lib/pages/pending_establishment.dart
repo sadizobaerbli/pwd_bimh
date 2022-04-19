@@ -1,39 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:pwd_bimh/config/button_names.dart';
 import 'package:pwd_bimh/config/colors.dart';
-import 'package:pwd_bimh/config/route_names.dart';
+import 'package:pwd_bimh/routes/route_names.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PendingEstablishmentPage extends StatelessWidget {
-  final String? title;
-  PendingEstablishmentPage({Key? key, this.title}) : super(key: key);
+  PendingEstablishmentPage({Key? key}) : super(key: key);
 
   //====================variables=================
   //----------------------------------------------
 
-  final List<String> keys = ['Building Id', 'Building Name',
-    'Concerned Ministry', 'Type'];
+  final List<String> keys = [
+    'Building Id',
+    'Building Name',
+    'Concerned Ministry',
+    'Type'
+  ];
 
-  final List<String> pendingKeys = ['Approved By Admins', 'Status',
-    'Approved By Mechanical Engineer', 'Approved By Civil Engineer'];
+  final List<String> pendingKeys = [
+    'Approved By Admins',
+    'Status',
+    'Approved By Mechanical Engineer',
+    'Approved By Civil Engineer'
+  ];
 
-  final List<String> values = ['PWD-102212221', 'Turag Thana Building',
-    'Ministry of Home Affairs', 'Civil'];
+  final List<String> values = [
+    'PWD-102212221',
+    'Turag Thana Building',
+    'Ministry of Home Affairs',
+    'Civil'
+  ];
 
-  final List<String> pendingValues = ['Pending', 'Published',
-    'Approved', 'Pending',];
+  final List<String> pendingValues = [
+    'Pending',
+    'Published',
+    'Approved',
+    'Pending',
+  ];
 
   final List<Color> colors = [primaryBlue, yellow, indigo, pink];
 
-  final List<String> urls = ['assets/icons/view.png',
-    'assets/icons/send-message.png', 'assets/icons/document.png',
-    'assets/icons/archive.png'];
+  final List<String> urls = [
+    'assets/icons/view.png',
+    'assets/icons/send-message.png',
+    'assets/icons/document.png',
+    'assets/icons/archive.png'
+  ];
 
   //====================Functions=================
   //----------------------------------------------
 
-  _cardItem({String? key, String? value}){
+  Padding _cardItem({String? key, String? value}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
       child: Row(
@@ -41,20 +60,30 @@ class PendingEstablishmentPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 2,
-            child: Text(key!, style: semiBoldText(13.sp, color: white),),
-          ),
-          SizedBox(width: 12.w,),
-          Expanded(
             flex: 3,
-            child: Text(value!, style: regularText(12.sp, color: white),),
+            child: Text(
+              key!,
+              style: semiBoldText(13.sp),
+            ),
+          ),
+          SizedBox(
+            width: 12.w,
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              value!,
+              style: regularText(
+                12.sp,
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-  _pendingAdditionalItem({String? pKey, String? pValue}){
+  Padding _pendingAdditionalItem({String? pKey, String? pValue}) {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 4.h),
       child: Row(
@@ -62,17 +91,18 @@ class PendingEstablishmentPage extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Text(
               pKey ?? '',
-              style: semiBoldText(13.sp, color: white),
+              style: semiBoldText(13.sp),
             ),
           ),
-          SizedBox(width: 12.w,),
+          SizedBox(
+            width: 12.w,
+          ),
           Expanded(
-            flex: 3,
+            flex: 2,
             child: Container(
-              margin: EdgeInsets.only(right: 70.w),
               padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.r),
@@ -80,7 +110,8 @@ class PendingEstablishmentPage extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  pValue ?? '', style: regularText(12.sp, color: white),
+                  pValue ?? '',
+                  style: regularText(12.sp),
                 ),
               ),
             ),
@@ -90,7 +121,7 @@ class PendingEstablishmentPage extends StatelessWidget {
     );
   }
 
-  _actionButton(String url, {Color? color}){
+  Container _actionButton(String url, {Color? color}) {
     return Container(
       padding: EdgeInsets.all(8.sp),
       margin: EdgeInsets.only(right: 12.w),
@@ -100,64 +131,69 @@ class PendingEstablishmentPage extends StatelessWidget {
       ),
       child: ImageIcon(
         AssetImage(url),
-        color: color, size: 16.sp,
+        color: color,
+        size: 16.sp,
       ),
     );
   }
 
-  _card(){
+  Container _card() {
     return Container(
       margin: EdgeInsets.only(bottom: 12.h),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15.r),
-      ),
-      child: Stack(
-        children: [
-          SizedBox(
-            height: 348.h,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(15.r),
-              child: Image.asset('assets/images/building.jpg',
-                fit: BoxFit.fill,
+      child: Container(
+        padding: EdgeInsets.all(8.sp),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10.r),
+          color: yellow.withOpacity(.2),
+        ),
+        child: Column(
+          children: [
+            //=======_cardItems indicates information as key-value==========
+            //--------------------------------------------------------------
+
+            Column(
+              children: List.generate(
+                keys.length,
+                (index) => _cardItem(key: keys[index], value: values[index]),
               ),
             ),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15.r),
-            child: Container(
-              padding: EdgeInsets.all(8.sp),
-              color: black.withOpacity(.6),
-              child: Column(
-                children: [
-                  Column(
-                    children: List.generate(
-                      keys.length, (index) => _cardItem(
-                        key: keys[index], value: values[index]),
-                    ),
-                  ),
-                  Column(
-                    children: List.generate(
-                      pendingKeys.length, (i) => _pendingAdditionalItem(
-                        pKey: pendingKeys[i], pValue: pendingValues[i]),
-                    ),
-                  ),
-                  SizedBox(height: 4.h,),
-                  Text('Actions', style: boldText(14.sp, color: white),),
-                  SizedBox(height: 8.h,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(
-                      colors.length, (index) => _actionButton(
-                        urls[index], color: colors[index]
-                    ),
-                    ),
-                  ),
-                  SizedBox(height: 4.h,),
-                ],
+
+            //=====_pendingAdditionalItem indicates information with buttons====
+            //------------------------------------------------------------------
+
+            Column(
+              children: List.generate(
+                pendingKeys.length,
+                (i) => _pendingAdditionalItem(
+                    pKey: pendingKeys[i], pValue: pendingValues[i]),
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 4.h,
+            ),
+            Text(
+              'Actions',
+              style: boldText(14.sp),
+            ),
+            SizedBox(
+              height: 8.h,
+            ),
+
+            //=======_actionButton indicates the icon buttons on the card======
+            //-----------------------------------------------------------------
+
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(
+                colors.length,
+                (index) => _actionButton(urls[index], color: colors[index]),
+              ),
+            ),
+            SizedBox(
+              height: 4.h,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -170,29 +206,41 @@ class PendingEstablishmentPage extends StatelessWidget {
         centerTitle: true,
         elevation: 0,
         backgroundColor: primaryBlue,
-        title: Text('Pending Establishment',
-          style: extraBoldText(18, color: white),),
+        title: Text(
+          'Pending Establishment',
+          style: extraBoldText(18, color: white),
+        ),
       ),
       body: Stack(
         children: [
+          //========_card indicates every item in list==========
+          //----------------------------------------------------
+
           ListView(
-            padding: EdgeInsets.fromLTRB(12.sp,12.sp,12.sp,46.sp),
+            padding: EdgeInsets.fromLTRB(12.sp, 12.sp, 12.sp, 46.sp),
             children: List.generate(
-              5, (index) => _card(),
+              5,
+              (index) => _card(),
             ),
           ),
+
           Positioned(
-            bottom: 0, left: 0, right: 0,
+            bottom: 0,
+            left: 0,
+            right: 0,
             child: GestureDetector(
-              onTap: (){
-                context.goNamed(addEstablishmentPage);
+              onTap: () {
+                context.pushNamed(addEstablishmentPage);
               },
               child: Container(
-                height: 46.h, width: double.infinity,
+                height: 46.h,
+                width: double.infinity,
                 color: primaryBlue,
                 child: Center(
-                  child: Text('ADD NEW ESTABLISHMENT',
-                    style: boldText(13.sp, color: white),),
+                  child: Text(
+                    addEstablishmentButton,
+                    style: boldText(13.sp, color: white),
+                  ),
                 ),
               ),
             ),

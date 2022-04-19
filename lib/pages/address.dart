@@ -7,8 +7,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class Address extends StatelessWidget {
   Address({Key? key}) : super(key: key);
 
-  //=======CustomTextField, CustomRadioSelection, CustomDropDown used=====
-  //----------------------------------------------------------------------
+  /*=====================CustomDropDown, CustomRadioSelection, CustomTextField
+  these are customized dropdown selection , customized radio selection and
+  customized textfield widgets=========================*/
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +21,19 @@ class Address extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Address', style: boldText(16.sp),),
-              Divider(thickness: 2.h,),
+              Text(
+                'Address',
+                style: boldText(16.sp),
+              ),
+              Divider(
+                thickness: 2.h,
+              ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 8.h,),
+                  SizedBox(
+                    height: 8.h,
+                  ),
                   CustomDropDown(
                     dropdownTitle: 'Division',
                     dropdownButtons: const ["No Data Available"],
@@ -38,7 +46,7 @@ class Address extends StatelessWidget {
                     dropdownTitle: 'Upazila/Thana',
                     dropdownButtons: const ["No Data Available"],
                   ),
-                  CustomTextField(textFieldTitle: 'Union/Ward', titleSize: 14,),
+                  CustomTextField(textFieldTitle: 'Union/Ward', titleSize: 14),
                 ],
               ),
             ],
@@ -49,16 +57,20 @@ class Address extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Location', style: boldText(16.sp),),
-              Divider(thickness: 2.h,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: 8.h,),
-                  CustomTextField(textFieldTitle: 'Latitude', titleSize: 14,),
-                  CustomTextField(textFieldTitle: 'Longitude', titleSize: 14,),
-                ],
+              Text(
+                'Location',
+                style: boldText(16.sp),
               ),
+              Divider(
+                thickness: 2.h,
+              ),
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                SizedBox(
+                  height: 8.h,
+                ),
+                CustomTextField(textFieldTitle: 'Latitude', titleSize: 14),
+                CustomTextField(textFieldTitle: 'Longitude', titleSize: 14),
+              ]),
             ],
           ),
         ),

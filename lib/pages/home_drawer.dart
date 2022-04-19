@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:pwd_bimh/config/colors.dart';
-import 'package:pwd_bimh/config/route_names.dart';
+import 'package:pwd_bimh/routes/route_names.dart';
 import 'package:pwd_bimh/config/text_styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -11,34 +11,54 @@ class HomeDrawer extends StatelessWidget {
   //====================Variables=================
   //----------------------------------------------
 
-  final List<String> _categories = ['Establishment', 'Reports', 'Roles',
-    'Administrations', 'Others'];
+  final List<String> _categories = [
+    'Establishment',
+    'Reports',
+    'Roles',
+    'Administrations',
+    'Others'
+  ];
 
-  final List<List<String>> _subcategories = [['Establishment',
-    'Pending Establishment', 'Archived Establishment', 'Add Establishment',
-    'Trashed Establishment'],['Establishment Report', 'Report By Geolocation',
-    'Common Reports'], ['Roles', 'Role Wise Permissions'] ,
-    ['Activity  Log', 'File Manager'], ['User Manual', 'Video Tutorial']];
+  final List<List<String>> _subcategories = [
+    [
+      'Establishment',
+      'Pending Establishment',
+      'Archived Establishment',
+      'Add Establishment',
+      'Trashed Establishment'
+    ],
+    ['Establishment Report', 'Report By Geolocation', 'Common Reports'],
+    ['Roles', 'Role Wise Permissions'],
+    ['Activity  Log', 'File Manager'],
+    ['User Manual', 'Video Tutorial']
+  ];
 
   //====================Functions=================
   //----------------------------------------------
 
-  _drawerTopPart(){
+  Container _drawerTopPart() {
     return Container(
-      height: 80.h, width: double.maxFinite,
+      height: 80.h,
+      width: double.maxFinite,
       padding: EdgeInsets.only(top: 30.h),
       color: primaryBlue,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(width: 14.w,),
           SizedBox(
-            height: 41.h, width: 41.w,
-            child: Image.asset('assets/images/launch_image.png',
+            width: 14.w,
+          ),
+          SizedBox(
+            height: 41.h,
+            width: 41.w,
+            child: Image.asset(
+              'assets/images/launch_image.png',
               fit: BoxFit.fill,
             ),
           ),
-          SizedBox(width: 8.w,),
+          SizedBox(
+            width: 8.w,
+          ),
           Padding(
             padding: EdgeInsets.only(top: 2.h),
             child: Column(
@@ -46,11 +66,17 @@ class HomeDrawer extends StatelessWidget {
               children: [
                 Text(
                   'গণপূর্ত অধিদপ্তর',
-                  style: extraBoldText(15.sp, color: white,),
+                  style: extraBoldText(
+                    15.sp,
+                    color: white,
+                  ),
                 ),
                 Text(
                   'Public Works Department',
-                  style: extraBoldText(15.sp, color: white,),
+                  style: extraBoldText(
+                    15.sp,
+                    color: white,
+                  ),
                 ),
               ],
             ),
@@ -60,21 +86,35 @@ class HomeDrawer extends StatelessWidget {
     );
   }
 
-  _category(BuildContext context, {String? category, int? currentIndex}){
+  Column _category(BuildContext context,
+      {String? category, int? currentIndex}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            SizedBox(width: 14.w,),
-            Text(category!, style: semiBoldText(14.sp, color: black),),
+            SizedBox(
+              width: 14.w,
+            ),
+            Text(
+              category!,
+              style: semiBoldText(15.sp, color: black),
+            ),
           ],
         ),
-        SizedBox(height: 12.h,),
+        SizedBox(
+          height: 12.h,
+        ),
+
+        //=========_subCategory indicates every item in category===========
+        //-----------------------------------------------------------------
+
         Column(
           children: List.generate(
-            _subcategories[currentIndex!].length, (index) => _subCategory(
-              context, subCategory: _subcategories[currentIndex][index],
+            _subcategories[currentIndex!].length,
+            (index) => _subCategory(
+              context,
+              subCategory: _subcategories[currentIndex][index],
             ),
           ),
         ),
@@ -82,35 +122,49 @@ class HomeDrawer extends StatelessWidget {
     );
   }
 
-  _subCategory(BuildContext context, {String? subCategory,}){
+  GestureDetector _subCategory(BuildContext context, {String? subCategory}) {
     return GestureDetector(
-      onTap: (){
-        if(subCategory == 'Establishment' ||
+      onTap: () {
+        if (subCategory == 'Establishment' ||
             subCategory == 'Archived Establishment' ||
-            subCategory == 'Trashed Establishment'){
-          context.goNamed(establishmentPage, params:{'title' : "$subCategory"});
-        }
-        else if(subCategory == 'Pending Establishment'){
-          context.goNamed(pendingEstablishmentPage);
-        }
-        else if(subCategory == 'Add Establishment'){
-          context.goNamed(addEstablishmentPage);
-        }
-        else if(subCategory == 'Establishment Report'){
-          context.goNamed(establishmentReportPage);
+            subCategory == 'Trashed Establishment') {
+          context
+              .pushNamed(establishmentPage, params: {"title": "$subCategory"});
+        } else if (subCategory == 'Pending Establishment') {
+          context.pushNamed(pendingEstablishmentPage);
+        } else if (subCategory == 'Add Establishment') {
+          context.pushNamed(addEstablishmentPage);
+        } else if (subCategory == 'Establishment Report') {
+          context.pushNamed(establishmentReportPage);
         }
       },
       child: Padding(
-        padding: EdgeInsets.only(bottom: 8.sp),
+        padding: EdgeInsets.only(bottom: 12.sp),
         child: Row(
           children: [
-            SizedBox(width: 16.w,),
-            const Icon(Icons.apps_outlined),
-            SizedBox(width: 26.w,),
-            Text(subCategory!, style: semiBoldText(13.sp),),
+            SizedBox(
+              width: 16.w,
+            ),
+            ImageIcon(
+              const AssetImage('assets/icons/establishment.png'),
+              size: 18.sp,
+              color: deepGrey,
+            ),
+            SizedBox(
+              width: 26.w,
+            ),
+            Text(
+              subCategory!,
+              style: semiBoldText(14.sp, color: deepGrey),
+            ),
             const Spacer(),
-            Text('', style: mediumText(12.sp, color: Colors.grey),),
-            SizedBox(width: 12.w,),
+            Text(
+              '',
+              style: mediumText(12.sp, color: Colors.grey),
+            ),
+            SizedBox(
+              width: 12.w,
+            ),
           ],
         ),
       ),
@@ -122,12 +176,25 @@ class HomeDrawer extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(0),
       children: [
+        //=======indicates the top section============
+        //--------------------------------------------
+
         _drawerTopPart(),
-        SizedBox(height: 12.h,),
+
+        SizedBox(
+          height: 12.h,
+        ),
+
+        //============indicates the drawer category============
+        //-----------------------------------------------------
+
         Column(
           children: List.generate(
-            _categories.length, (index) => _category(
-              context, currentIndex: index, category: _categories[index],
+            _categories.length,
+            (index) => _category(
+              context,
+              currentIndex: index,
+              category: _categories[index],
             ),
           ),
         ),
